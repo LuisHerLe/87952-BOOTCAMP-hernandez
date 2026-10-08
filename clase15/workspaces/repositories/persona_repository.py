@@ -48,3 +48,13 @@ class Repositoriopersonas:
 
         self.__personas.remove(persona)
         return True
+    
+    def modificar_persona(self, persona_actualizada: Persona) -> Persona | None:
+        persona = self.obtener_por_dni(persona_actualizada.dni)
+
+        if persona is None:
+            return None 
+        
+        self.__personas.remove(persona)
+        self.__personas.append(persona_actualizada)
+        return persona    
