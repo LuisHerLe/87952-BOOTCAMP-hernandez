@@ -17,3 +17,21 @@ class PersonaService:
 
     def obtener_alumno_por_dni(self, dni: int) -> Persona | None:
         return self.repo.obtener_por_dni(dni)
+    
+    def eliminar_persona_por_dni(self, dni: int) -> str:
+        if self.repo.obtener_por_dni(dni) is None:
+            raise ValueError(f"No existe la persona con dni {dni}")
+        
+        return self.repo.eliminar(dni)
+    
+    def modificar_persona(self, dni: int, nuevo_nombre: str) -> Persona:
+        persona_existente = self.repo.obtener_por_dni(dni)
+
+        if persona_existente is None:
+            raise ValueError(f"No se encontró una persona con el dni {dni}")
+
+        persona_actualizada = Persona(dni, nuevo_nombre)
+        
+        resultado = self.repo.modificar_persona(persona_actualizada)
+        
+        return resultado    
