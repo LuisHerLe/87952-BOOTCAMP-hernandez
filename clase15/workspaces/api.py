@@ -130,6 +130,46 @@ def agregar_persona():
         "nombre": persona.nombre
     }), 201
     
+@app.delete("/personas/eliminar/<int:dni>")
+def eliminar_persona(dni: int):
+
+
+    servicio = PersonaService()
+    
+    try:
+        servicio.eliminar_persona_por_dni(dni)
+    except ValueError as error:
+        return jsonify(
+            {
+                "error": str(error)
+            }
+        ), 409
+        
+    return jsonify({
+        "estado": "Persona eliminada correctamente"
+    }), 200      
+    
+@app.put("/personas/modificar/<int:dni>")
+def modificar_persona(dni: int):
+    datos = request.get_json()
+    
+    servicio = PersonaService()
+    
+    try:
+        persona_modificada = servicio.modificar_persona(dni, datos["nombre"])
+    except ValueError as error:
+        return jsonify(
+            {
+                "error": str(error)
+            }
+        ), 404 
+        
+    return jsonify({
+        "estado": "Persona modificada correctamente",
+        "dni": persona_modificada.dni,
+        "nombre": persona_modificada.nombre
+    }), 200    
+    
     
 
 if __name__ == "__main__":
