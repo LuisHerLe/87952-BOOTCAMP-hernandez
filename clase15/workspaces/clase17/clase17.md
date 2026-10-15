@@ -1,0 +1,38 @@
+## Qué se vió
+- Vimos jev-ai.org para tomar decisiones (Responde la respuesta más rápido)
+- Se habló sobre donde se deben almacenar las reglas de negocios
+- Se habló sobre el servicios: Orquesta y coordina las operaciones del negocio que necesitan coordinar entre varias clases del modelo distintas.
+- Se refactorizó con git hub copilot
+- Se saca la instancia de AlumnoService de global a dentro de obtener_alumnos
+- Se validó antes de agregar un alumno que este no deba existir
+- Si la API no captura la excepción del servicio, ¿Qué ocurre?
+    - Responde un error 500 (Excepción no controlada)
+- Extensiones VS Code:
+    - Thunder Client (Rayo morado)
+    - Postman
+
+Se hizo un machete para crear un crud
+    - Requerimiento: Instalar flask si no está
+    - Definir la estructura del proyecto con mermaid
+    - Crear la estructura del proyecto:
+        - Carpeta models
+        - Carpeta repositories
+        - Carpeta services
+        - Archivo api.py
+            - Se puede tener una carpeta para la presentación / controlador
+    - Describir la estructura del proyecto e información en README.md
+        - Contar con este archivo para el contexto
+    - Crear la clase ppal en models
+        - Reglas de negocio: Validaciones propias del modelo
+    - Crear el repositorio
+        - Persistir el objeto en BD, archivos o mecanismo de persistencia
+        - En general es una BD
+        - El modelo no accede al repositorio
+    - Crear el servicio
+        - Reglas de negocio: Crear reglas que requieren coordinar varias llamadas al modelo y usar el repo
+        - No hay legajo duplicado
+    - Crear el endpoint de flask
+        - GET para todos o individual
+        - POST agregar nuevo
+        - PUT modificar
+        - DELETE para eliminar
